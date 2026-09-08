@@ -1,0 +1,88 @@
+ 14.59 Selecting previously unselected package libasan8:amd64.
+#15 14.59 Preparing to unpack .../025-libasan8_14.2.0-19_amd64.deb ...
+#15 14.60 Unpacking libasan8:amd64 (14.2.0-19) ...
+#15 CANCELED
+------
+ > [node-builder 7/8] RUN npm install -g pnpm && pnpm install --no-frozen-lockfile:
+11.09 . preinstall: Done
+11.17 [WARN] Issues with peer dependencies found. Run "pnpm peers check" to list them.
+11.17 
+11.17 devDependencies:
+11.17 + prettier 3.9.1 (3.9.4 is available)
+11.17 + typescript 5.9.3 (6.0.3 is available)
+11.17 
+11.31 [ERR_PNPM_IGNORED_BUILDS] Ignored build scripts: esbuild@0.27.3
+11.31 
+11.31 Run "pnpm approve-builds" to pick which dependencies should be allowed to run scripts.
+------
+ 2 warnings found (use docker --debug to expand):
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ENV "TMDB_API_KEY") (line 25)
+ - SecretsUsedInArgOrEnv: Do not use ARG or ENV instructions for sensitive data (ARG "TMDB_API_KEY") (line 24)
+Dockerfile:10
+--------------------
+   8 |     COPY artifacts/api-server ./artifacts/api-server
+   9 |     
+  10 | >>> RUN npm install -g pnpm && pnpm install --no-frozen-lockfile
+  11 |     RUN pnpm --filter @workspace/api-server run build
+  12 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/sh -c npm install -g pnpm && pnpm install --no-frozen-lockfile" did not complete successfully: exit code: 1
+Reference
+Check build summary support
+Error: buildx failed with: ERROR: failed to build: failed to solve: process "/bin/sh -c npm install -g pnpm && pnpm install --no-frozen-lockfile" did not complete successfully: exit code: 1
+0s
+1s
+Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Post job cleanup.
+Generating build summary
+  exporting build record to /home/runner/work/_temp/docker-actions-toolkit-RvyRmk/export
+  (node:4015) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  /usr/bin/docker buildx history export --builder builder-5e551c7c-005e-41f5-b745-31bf972e694d --output /home/runner/work/_temp/docker-actions-toolkit-RvyRmk/export/ftmdeveloperr~FilmyWave~WNRC93.dockerbuild wnrc93v82p79mzrwjvc3xwou2 --finalize
+  Build record written to /home/runner/work/_temp/docker-actions-toolkit-RvyRmk/export/ftmdeveloperr~FilmyWave~WNRC93.dockerbuild (46.54 KB)
+  Uploading ftmdeveloperr~FilmyWave~WNRC93.dockerbuild to blob storage
+  Beginning upload of artifact content to blob storage
+  (node:4015) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+  Uploaded bytes 47657
+  Finished uploading artifact content to blob storage!
+  SHA256 hash of uploaded artifact is 225bc73ac44276dec62117ca78aa4f9998b2b12348685af99e70fb77e32bfad6
+  Finalizing artifact upload
+  Artifact successfully finalized (7972267388)
+  Artifact download URL: https://github.com/ftmdeveloperr/FilmyWave/actions/runs/28423979182/artifacts/7972267388
+  Writing summary
+Removing temp folder /home/runner/work/_temp/docker-actions-toolkit-azIcVu
+Post cache
+  
+1s
+Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Post job cleanup.
+Logout from ghcr.io
+Post cache
+  
+2s
+Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Post job cleanup.
+Removing builder
+  (node:4173) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+  (Use `node --trace-deprecation ...` to show where the warning was created)
+  /usr/bin/docker buildx rm builder-5e551c7c-005e-41f5-b745-31bf972e694d
+  builder-5e551c7c-005e-41f5-b745-31bf972e694d removed
+Cleaning up certificates
+Post cache
+  
+0s
+Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Post job cleanup.
+/usr/bin/git version
+git version 2.54.0
+Temporarily overriding HOME='/home/runner/work/_temp/4a8f2c89-10aa-423a-9985-ed6cb522673d' before making global git config changes
+Adding repository directory to the temporary git global config as a safe directory
+/usr/bin/git config --global --add safe.directory /home/runner/work/FilmyWave/FilmyWave
+/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+http.https://github.com/.extraheader
+/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url

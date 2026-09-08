@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B0B0D" />
+    <title>MOVIE BOX</title>
+    <style>
+      html, body {
+        margin: 0;
+        height: 100%;
+        background: #0b0b0d;
+        color: #fff;
+        font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      }
+      .wrap {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        text-align: center;
+        padding: 24px;
+      }
+      .logo {
+        font-size: 34px;
+        font-weight: 900;
+        letter-spacing: -1px;
+        background: linear-gradient(135deg, #ff3d3d, #ff8a00 55%, #ffd02e);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .by {
+        font-size: 10px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: #8b8b96;
+      }
+      .bar {
+        margin-top: 18px;
+        width: 180px;
+        height: 4px;
+        border-radius: 99px;
+        background: #1e1e26;
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 40%;
+        border-radius: 99px;
+        background: linear-gradient(90deg, #ff3d3d, #ffd02e);
+        animation: slide 1.1s infinite ease-in-out;
+      }
+      @keyframes slide {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(300%); }
+      }
+      a { color: #ff8a00; font-size: 13px; }
+      .card {
+        margin-top: 6px;
+        width: 100%;
+        max-width: 300px;
+        border: 1px solid #23232c;
+        background: #131318;
+        border-radius: 18px;
+        padding: 16px;
+      }
+      .label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #8b8b96; }
+      .q { font-size: 20px; font-weight: 900; margin: 10px 0; }
+      input {
+        width: 80px; padding: 10px; border-radius: 12px; text-align: center;
+        border: 1px solid #2c2c36; background: #0b0b0d; color: #fff; font-size: 16px; font-weight: 700;
+      }
+      button {
+        margin-top: 12px; width: 100%; padding: 12px; border: 0; border-radius: 12px;
+        font-weight: 900; color: #fff; font-size: 13px;
+        background: linear-gradient(135deg, #ff3d3d, #ff8a00 60%, #ffd02e);
+      }
+      button[disabled] { opacity: .5; }
+      .err { color: #ff6b6b; font-size: 12px; min-height: 16px; margin-top: 8px; }
+    </style>
+  </head>
+  <body>
+    <!-- Offline / fallback screen. Normally the app loads the live MOVIE BOX site
+         configured in capacitor.config.json -> server.url -->
+    <div class="wrap">
+      <div class="logo">MOVIE BOX</div>
+      <div class="by">by Beta Bot Hub</div>
+      <div class="bar"><i></i></div>
+      <p style="color:#71717f;font-size:13px;max-width:280px">
+        Connecting to MOVIE BOX… If this screen stays, check your internet connection.
+      </p>
+      <div class="card">
+        <div class="label">Human verification</div>
+        <div class="q" id="q">? + ? = ?</div>
+        <input id="ans" inputmode="numeric" placeholder="?" />
+        <button id="go" disabled>Continue to MOVIE BOX</button>
+        <div class="err" id="err"></div>
+      </div>
+      <div class="card" style="margin-top:14px;text-align:left">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8b8b96;margin-bottom:10px">Settings</div>
+        <label style="display:flex;align-items:center;gap:10px;font-size:13px;margin-bottom:8px">
+          <input type="checkbox" id="hist" checked /> Watch history on
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;font-size:13px">
+          <input type="checkbox" id="fs" /> Open in fullscreen
+        </label>
+      </div>
+      <a href="https://t.me/betabot_hub">Join Beta Bot Hub on Telegram</a>
+    </div>
+    <script>
+      // Site the app opens after verification — keep in sync with capacitor.config.json
+      var SITE_URL = "https://YOUR-MOVIEBOX-DOMAIN.com";
+      var a, b;
+      function newQuestion() {
+        a = 1 + Math.floor(Math.random() * 9);
+        b = 1 + Math.floor(Math.random() * 9);
+        document.getElementById("q").textContent = a + " + " + b + " = ?";
+        document.getElementById("ans").value = "";
+        document.getElementById("go").disabled = true;
+      }
+      document.getElementById("ans").addEventListener("input", function (e) {
+        var v = e.target.value.replace(/\D/g, "");
+        e.target.value = v;
+        document.getElementById("err").textContent = "";
+        document.getElementById("go").disabled = Number(v) !== a + b || v === "";
+      });
+      document.getElementById("go").addEventListener("click", function () {
+        if (Number(document.getElementById("ans").value) !== a + b) {
+          document.getElementById("err").textContent = "Wrong answer, try again.";
+          document.getElementById("hist").checked = localStorage.getItem("mb-app-history") !== "off";
+      document.getElementById("fs").checked = localStorage.getItem("mb-app-fullscreen") === "on";
+      newQuestion();
+          return;
+        }
+        var histOn = document.getElementById("hist").checked;
+        var fsOn = document.getElementById("fs").checked;
+        localStorage.setItem("mb-app-history", histOn ? "on" : "off");
+        localStorage.setItem("mb-app-fullscreen", fsOn ? "on" : "off");
+        if (fsOn && document.documentElement.requestFullscreen) {
+          try { document.documentElement.requestFullscreen(); } catch (e) {}
+        }
+        var sep = SITE_URL.indexOf("?") > -1 ? "&" : "?";
+        location.href = SITE_URL + sep + "history=" + (histOn ? "on" : "off");
+      });
+      document.getElementById("hist").checked = localStorage.getItem("mb-app-history") !== "off";
+      document.getElementById("fs").checked = localStorage.getItem("mb-app-fullscreen") === "on";
+      newQuestion();
+    </script>
+  </body>
+</html>

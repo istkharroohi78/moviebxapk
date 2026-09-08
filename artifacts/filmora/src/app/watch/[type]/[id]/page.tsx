@@ -1,0 +1,112 @@
+import React from "react";
+import Link from "next/link";
+import { tmdb } from "@/lib/tmdb";
+import WatchContainer from "@/components/WatchContainer";
+import { siteConfig } from "@/lib/config";
+
+interface WatchPageProps {
+    params: Promise<{
+        type: "movie" | "tv";
+        id: string;
+    }>;
+    searchParams: Promise<{
+        s?: string;
+        e?: string;
+        resume?: string;
+        server?: string;
+    }>;
+}
+
+export async function generateMetadata({ params }: WatchPageProps) {
+    const { type, id } = await params;
+    const movie = await tmdb.getDetails(type, id);
+    
+    if (!movie) return { title: siteConfig.name };
+
+    const title = movie.title || movie.name;
+    const year = (movie.release_date || movie.first_air_date)?.split("-")[0];
+    
+    return {
+        title: `${title} (${year}) | ${siteConfig.name}`,
+        description: movie.overview,
+        openGraph: {
+            title: `${title} | ${siteConfig.name}`,
+            description: movie.overview,
+            images: [
+                {
+                    url: `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`,
+                    width: 1280,
+                    height: 720,
+                    alt: title
+                },
+            ],
+            type: "video.movie",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: `${title} | ${siteConfig.name}`,
+            description: movie.overview,
+            images: [`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`],
+        }
+    };
+}
+
+export default async function WatchPage({ params, searchParams }: WatchPageProps) {
+    const { type, id } = await params;
+    const { s, e, resume, server } = await searchParams;
+    
+    const movie = await tmdb.getDetails(type, id);
+
+    if (!movie || !movie.id) {
+        return (
+            <main className="min-h-screen bg-prime-dark flex items-center justify-center p-4 text-center">
+                <div className="space-y-4">
+                    <h1 className="text-2xl font-bold">Content not found or API error</h1>
+                    <p className="text-gray-400">We couldn't load the details for this {type}. Please try again later.</p>
+                    <Link href="/" className="inline-block bg-prime-blue text-white px-6 py-2 rounded-md font-bold">
+                        Back to Home
+                    </Link>
+                </div>
+            </main>
+        );
+    }
+
+    const title = movie.title || movie.name;
+    const year = (movie.release_date || movie.first_air_date)?.split("-")[0];
+
+    // Prepare JSON-LD structured data
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": type === "movie" ? "Movie" : "TVSeries",
+        "name": title,
+        "description": movie.overview,
+        "image": `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`,
+        "datePublished": movie.release_date || movie.first_air_date,
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": movie.vote_average,
+            "bestRating": "10",
+            "worstRating": "1",
+            "ratingCount": movie.vote_count
+        }
+    };
+
+    return (
+        <main className="min-h-screen bg-black pb-20">
+            {/* Add JSON-LD to the page */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <WatchContainer 
+                type={type} 
+                id={id} 
+                tmdbData={movie} 
+                initialSeason={s ? parseInt(s) : 1}
+                initialEpisode={e ? parseInt(e) : 1}
+                initialServer={server ? parseInt(server) : 0}
+                startPlaying={resume === "true"}
+            />
+        </main>
+    );
+}

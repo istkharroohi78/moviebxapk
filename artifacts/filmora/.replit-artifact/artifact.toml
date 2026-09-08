@@ -1,0 +1,27 @@
+kind = "web"
+  previewPath = "/"
+  title = "Filmora - Movie Streaming"
+  version = "1.0.0"
+  id = "artifacts/filmora"
+  router = "path"
+
+  [[integratedSkills]]
+  name = "react-vite"
+  version = "1.0.0"
+
+  [[services]]
+  name = "web"
+  paths = [ "/" ]
+  localPort = 24549
+
+  [services.development]
+  run = "pnpm --filter @workspace/filmora run dev"
+
+  [services.production]
+  build = [ "pnpm", "--filter", "@workspace/filmora", "run", "build" ]
+  run = "pnpm --filter @workspace/filmora run start"
+
+  [services.env]
+  PORT = "24549"
+  BASE_PATH = "/"
+  

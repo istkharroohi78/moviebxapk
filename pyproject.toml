@@ -1,0 +1,42 @@
+[project]
+name = "repl-nix-workspace"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "aiofiles>=25.1.0",
+    "aiohttp>=3.14.1",
+    "apscheduler>=3.11.2",
+    "beautifulsoup4>=4.15.0",
+    "cinemagoer>=2026.6.27",
+    "colorama>=0.4.6",
+    "dnspython>=2.8.0",
+    "ffmpeg-python>=0.2.0",
+    "fuzzywuzzy>=0.18.0",
+    "gtts>=2.5.4",
+    "humanize>=4.15.0",
+    "jinja2>=3.1.6",
+    "marshmallow>=4.3.0",
+    "motor>=3.7.1",
+    "numpy>=2.4.6",
+    "opencv-python-headless>=4.13.0.92",
+    "pillow>=12.2.0",
+    "psutil>=7.2.2",
+    "pyleaves>=1.0.2",
+    "pymongo[srv]>=4.17.0",
+    "pyrofork>=2.3.69",
+    "pyromod>=3.1.6",
+    "pyshorteners>=1.0.1",
+    "python-decouple>=3.8",
+    "python-dotenv>=1.2.2",
+    "python-levenshtein>=0.27.3",
+    "pytz>=2026.2",
+    "requests>=2.34.2",
+    "shortzy>=0.0.8",
+    "telegraph>=2.2.0",
+    "tgcrypto>=1.2.5",
+    "ujson>=5.13.0",
+    "umongo>=4.0.0",
+    "wget>=3.2",
+    "wikipedia>=1.4.0",
+]

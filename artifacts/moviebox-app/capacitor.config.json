@@ -1,0 +1,33 @@
+{
+  "appId": "com.betabothub.moviebox",
+  "appName": "MOVIE BOX",
+  "webDir": "www",
+  "server": {
+    "url": "https://YOUR-MOVIEBOX-DOMAIN.com",
+    "cleartext": false,
+    "androidScheme": "https",
+    "allowNavigation": [
+      "*.moviebox.com",
+      "YOUR-MOVIEBOX-DOMAIN.com",
+      "t.me",
+      "*.tmdb.org",
+      "image.tmdb.org"
+    ]
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#0B0B0D"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "backgroundColor": "#0B0B0D",
+      "androidSplashResourceName": "splash",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#0B0B0D"
+    }
+  }
+}

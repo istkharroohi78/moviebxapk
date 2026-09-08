@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" role="img" aria-label="FilmyWave icon">
+  <defs>
+    <linearGradient id="fw-fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0052CC"/>
+      <stop offset="100%" stop-color="#00C6FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="2" y="2" width="40" height="40" rx="9" ry="9" fill="url(#fw-fav-bg)"/>
+
+  <rect x="6"  y="8"  width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
+  <rect x="6"  y="16" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
+  <rect x="6"  y="24" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
+  <rect x="6"  y="32" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
+  <line x1="15" y1="4" x2="15" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+  <polygon points="19,12 19,32 36,22" fill="white" opacity="0.97"/>
+
+  <path d="M4 39 Q9 35 15 39 Q21 43 27 39 Q33 35 40 39"
+        fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

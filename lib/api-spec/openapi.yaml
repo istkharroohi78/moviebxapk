@@ -1,0 +1,308 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: Filmora - Movie indexing and streaming platform powered by Telegram bot
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: movies
+    description: Movie operations
+  - name: genres
+    description: Genre operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /movies:
+    get:
+      operationId: listMovies
+      tags: [movies]
+      summary: List movies
+      description: List movies with optional search, genre, language, and quality filters
+      parameters:
+        - name: q
+          in: query
+          schema:
+            type: string
+          description: Search query
+        - name: genre
+          in: query
+          schema:
+            type: string
+          description: Filter by genre
+        - name: language
+          in: query
+          schema:
+            type: string
+          description: Filter by language
+        - name: quality
+          in: query
+          schema:
+            type: string
+          description: Filter by quality (e.g. 1080p, 720p, 480p)
+        - name: page
+          in: query
+          schema:
+            type: integer
+          description: Page number (default 1)
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Results per page (default 20)
+      responses:
+        "200":
+          description: Paginated movie list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MovieList"
+
+  /movies/featured:
+    get:
+      operationId: getFeaturedMovies
+      tags: [movies]
+      summary: Get featured/trending movies
+      description: Returns the most recently added and highest rated movies
+      responses:
+        "200":
+          description: Featured movies
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FeaturedMovies"
+
+  /movies/stats:
+    get:
+      operationId: getMovieStats
+      tags: [movies]
+      summary: Get movie library statistics
+      description: Returns total count, genre breakdown, language breakdown
+      responses:
+        "200":
+          description: Stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MovieStats"
+
+  /movies/{id}:
+    get:
+      operationId: getMovie
+      tags: [movies]
+      summary: Get a single movie by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Movie details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Movie"
+        "404":
+          description: Movie not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /genres:
+    get:
+      operationId: listGenres
+      tags: [genres]
+      summary: List all genres
+      description: Returns list of all unique genres in the library
+      responses:
+        "200":
+          description: Genres list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Genre"
+
+  /languages:
+    get:
+      operationId: listLanguages
+      tags: [genres]
+      summary: List all languages
+      description: Returns list of all unique languages in the library
+      responses:
+        "200":
+          description: Languages list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    Movie:
+      type: object
+      required:
+        - id
+        - title
+        - addedAt
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        year:
+          type: ["integer", "null"]
+        genre:
+          type: array
+          items:
+            type: string
+        language:
+          type: ["string", "null"]
+        quality:
+          type: ["string", "null"]
+        poster:
+          type: ["string", "null"]
+        backdrop:
+          type: ["string", "null"]
+        overview:
+          type: ["string", "null"]
+        rating:
+          type: ["number", "null"]
+        imdbId:
+          type: ["string", "null"]
+        fileId:
+          type: ["string", "null"]
+        fileSize:
+          type: ["integer", "null"]
+        caption:
+          type: ["string", "null"]
+        addedAt:
+          type: string
+
+    MovieList:
+      type: object
+      required:
+        - items
+        - total
+        - page
+        - pages
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Movie"
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+
+    FeaturedMovies:
+      type: object
+      required:
+        - latest
+        - trending
+        - topRated
+      properties:
+        latest:
+          type: array
+          items:
+            $ref: "#/components/schemas/Movie"
+        trending:
+          type: array
+          items:
+            $ref: "#/components/schemas/Movie"
+        topRated:
+          type: array
+          items:
+            $ref: "#/components/schemas/Movie"
+
+    MovieStats:
+      type: object
+      required:
+        - total
+        - genres
+        - languages
+      properties:
+        total:
+          type: integer
+        genres:
+          type: array
+          items:
+            $ref: "#/components/schemas/GenreCount"
+        languages:
+          type: array
+          items:
+            $ref: "#/components/schemas/LanguageCount"
+
+    Genre:
+      type: object
+      required:
+        - name
+        - count
+      properties:
+        name:
+          type: string
+        count:
+          type: integer
+
+    GenreCount:
+      type: object
+      required:
+        - name
+        - count
+      properties:
+        name:
+          type: string
+        count:
+          type: integer
+
+    LanguageCount:
+      type: object
+      required:
+        - name
+        - count
+      properties:
+        name:
+          type: string
+        count:
+          type: integer
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string

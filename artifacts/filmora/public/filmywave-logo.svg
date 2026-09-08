@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 44" role="img" aria-label="FilmyWave">
+  <defs>
+    <linearGradient id="iconBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0052CC"/>
+      <stop offset="100%" stop-color="#00C6FF"/>
+    </linearGradient>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00BFFF"/>
+      <stop offset="100%" stop-color="#00E5FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon: rounded square with blue-cyan gradient -->
+  <rect x="0" y="2" width="40" height="40" rx="9" ry="9" fill="url(#iconBg)"/>
+
+  <!-- Film strip: left column of holes -->
+  <rect x="4"  y="8"  width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+  <rect x="4"  y="16" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+  <rect x="4"  y="24" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+  <rect x="4"  y="32" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.35)"/>
+  <!-- Separator line -->
+  <line x1="13" y1="4" x2="13" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+  <!-- Play triangle -->
+  <polygon points="18,12 18,32 34,22" fill="white" opacity="0.97"/>
+
+  <!-- Wave accent at bottom -->
+  <path d="M2 38 Q8 34 14 38 Q20 42 26 38 Q32 34 38 38"
+        fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Wordmark: "Filmy" in white -->
+  <text x="48" y="30"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="20" font-weight="800" fill="#FFFFFF" letter-spacing="-0.6">Filmy</text>
+
+  <!-- Wordmark: "Wave" in cyan -->
+  <text x="104" y="30"
+        font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif"
+        font-size="20" font-weight="800" fill="url(#waveGrad)" letter-spacing="-0.6">Wave</text>
+</svg>

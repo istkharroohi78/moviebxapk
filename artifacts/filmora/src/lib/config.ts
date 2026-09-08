@@ -1,0 +1,18 @@
+export const siteConfig = {
+  name:           process.env.NEXT_PUBLIC_SITE_NAME          ?? "MOVIE BOX",
+  brandBy:        process.env.NEXT_PUBLIC_BRAND_BY           ?? "by Beta Bot Hub",
+  telegram:       process.env.NEXT_PUBLIC_TELEGRAM_LINK      ?? "https://t.me/betabot_hub",
+  url:            process.env.NEXT_PUBLIC_SITE_URL           ?? "https://moviebox.com",
+  contactEmail:   process.env.NEXT_PUBLIC_CONTACT_EMAIL      ?? "contact@moviebox.com",
+  twitterHandle:  process.env.NEXT_PUBLIC_TWITTER_HANDLE     ?? "@betabot_hub",
+  logoPath:       process.env.NEXT_PUBLIC_LOGO_PATH          ?? "/fw-icon.svg",
+  gaId:           process.env.NEXT_PUBLIC_GA_ID              ?? "",
+  gscVerification:process.env.NEXT_PUBLIC_GSC_VERIFICATION   ?? "",
+  downloadProxy:  process.env.NEXT_PUBLIC_DOWNLOAD_PROXY_URL ?? "",
+  botUsername:    process.env.NEXT_PUBLIC_BOT_USERNAME        ?? "",
+  botStreamUrl:   process.env.NEXT_PUBLIC_BOT_STREAM_URL     ?? "",
+  tagline:        process.env.NEXT_PUBLIC_TAGLINE            ?? "Movies, Web Series & Cartoons — all in one box",
+  description:    process.env.NEXT_PUBLIC_SITE_DESCRIPTION   ?? "MOVIE BOX by Beta Bot Hub — stream and download movies, web series and cartoons in 480p, 720p, 1080p and 4K with Dolby Atmos audio.",
+  oldDomain:      process.env.NEXT_PUBLIC_OLD_DOMAIN         ?? "",
+  lsPrefix:       process.env.NEXT_PUBLIC_LS_PREFIX          ?? "mb_",
+};
