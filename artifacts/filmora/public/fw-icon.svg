@@ -1,21 +1,209 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" role="img" aria-label="FilmyWave icon">
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 570 556"
+     width="100%"
+     height="100%"
+     role="img"
+     aria-label="MovieBox icon">
+
   <defs>
-    <linearGradient id="fw-fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0052CC"/>
-      <stop offset="100%" stop-color="#00C6FF"/>
+
+    <radialGradient id="bg" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#071B43"/>
+      <stop offset="70%" stop-color="#031536"/>
+      <stop offset="100%" stop-color="#020D25"/>
+    </radialGradient>
+
+    <linearGradient id="film"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6500"/>
+      <stop offset="30%" stop-color="#FF9D00"/>
+      <stop offset="55%" stop-color="#FFD21A"/>
+      <stop offset="80%" stop-color="#FFB000"/>
+      <stop offset="100%" stop-color="#FF6900"/>
     </linearGradient>
+
+    <linearGradient id="blue"
+                    x1="0%" y1="0%"
+                    x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#19DFFF"/>
+      <stop offset="40%" stop-color="#08B9FF"/>
+      <stop offset="72%" stop-color="#0877FF"/>
+      <stop offset="100%" stop-color="#173BEA"/>
+    </linearGradient>
+
+    <linearGradient id="arrow"
+                    x1="50%" y1="0%"
+                    x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFE12A"/>
+      <stop offset="45%" stop-color="#FFC000"/>
+      <stop offset="75%" stop-color="#FF9700"/>
+      <stop offset="100%" stop-color="#FF6500"/>
+    </linearGradient>
+
+    <pattern id="dots"
+             width="20"
+             height="20"
+             patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4"
+              r="1.6"
+              fill="#0877E8"
+              opacity="0.65"/>
+    </pattern>
+
+    <filter id="glow"
+            x="-50%" y="-50%"
+            width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5"
+                      result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
   </defs>
 
-  <rect x="2" y="2" width="40" height="40" rx="9" ry="9" fill="url(#fw-fav-bg)"/>
 
-  <rect x="6"  y="8"  width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <rect x="6"  y="16" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <rect x="6"  y="24" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <rect x="6"  y="32" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <line x1="15" y1="4" x2="15" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <!-- Background -->
+  <rect width="570"
+        height="556"
+        fill="url(#bg)"/>
 
-  <polygon points="19,12 19,32 36,22" fill="white" opacity="0.97"/>
+  <rect x="0" y="0"
+        width="570"
+        height="125"
+        fill="url(#dots)"
+        opacity="0.75"/>
 
-  <path d="M4 39 Q9 35 15 39 Q21 43 27 39 Q33 35 40 39"
-        fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="0" y="455"
+        width="570"
+        height="101"
+        fill="url(#dots)"
+        opacity="0.75"/>
+
+
+  <!-- Blue Play Shape -->
+  <path
+    d="M 205 82
+       L 451 224
+       Q 490 247 451 270
+       L 205 414
+       Q 135 438 135 360
+       L 135 139
+       Q 135 59 205 82 Z"
+    fill="url(#blue)"
+    stroke="#FFFFFF"
+    stroke-width="7"
+    stroke-linejoin="round"
+    filter="url(#glow)"/>
+
+
+  <!-- Blue Highlight -->
+  <path
+    d="M 326 151
+       L 447 223
+       Q 469 236 447 249
+       L 326 321 Z"
+    fill="#35D9FF"
+    opacity="0.48"/>
+
+
+  <!-- Orange Film Strip -->
+  <path
+    d="M 187 82
+       Q 135 67 135 139
+       L 135 360
+       Q 135 438 187 414
+       L 326 330
+       L 326 166 Z"
+    fill="url(#film)"
+    stroke="#FFFFFF"
+    stroke-width="7"
+    stroke-linejoin="round"/>
+
+
+  <!-- Film Highlight -->
+  <path
+    d="M 153 103
+       Q 143 118 143 143
+       L 143 350
+       Q 143 382 157 394
+       L 184 378
+       L 184 101
+       Q 166 96 153 103 Z"
+    fill="#FF6800"
+    opacity="0.38"/>
+
+
+  <!-- Film Holes -->
+  <rect x="158" y="111"
+        width="19" height="34"
+        rx="7"
+        fill="#06152F"/>
+
+  <rect x="158" y="168"
+        width="19" height="34"
+        rx="7"
+        fill="#06152F"/>
+
+  <rect x="158" y="225"
+        width="19" height="34"
+        rx="7"
+        fill="#06152F"/>
+
+  <rect x="158" y="282"
+        width="19" height="34"
+        rx="7"
+        fill="#06152F"/>
+
+  <rect x="158" y="339"
+        width="19" height="34"
+        rx="7"
+        fill="#06152F"/>
+
+
+  <!-- ================================= -->
+  <!-- PERFECTLY CENTERED DOWNLOAD ARROW -->
+  <!-- ================================= -->
+
+  <path
+    d="M 230 130
+       L 280 130
+       L 280 250
+       L 330 250
+       L 255 365
+       L 180 250
+       L 230 250
+       Z"
+    fill="url(#arrow)"
+    stroke="#FFFFFF"
+    stroke-width="9"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    filter="url(#glow)"/>
+
+
+  <!-- Arrow Highlight -->
+  <path
+    d="M 240 141
+       L 270 141
+       L 270 254
+       L 302 254
+       L 255 326
+       L 208 254
+       L 240 254
+       Z"
+    fill="#FFF36A"
+    opacity="0.22"/>
+
+
+  <!-- Gloss -->
+  <path
+    d="M 185 84 L 445 236"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="2"
+    opacity="0.32"/>
+
 </svg>
