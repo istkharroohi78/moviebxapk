@@ -20,10 +20,6 @@ interface Props {
     title?: string;
 }
 
-/**
- * Netflix-style quality + audio bar for MOVIE BOX.
- * Preferences persist locally and are used by the download options below.
- */
 export default function PlaybackQualityBar({ downloadBase, title }: Props) {
     const [quality, setQuality] = useState<Quality>("1080p");
     const [audio, setAudio] = useState<AudioTrack>("Dolby Atmos");
@@ -39,7 +35,6 @@ export default function PlaybackQualityBar({ downloadBase, title }: Props) {
         if (a && AUDIOS.includes(a)) setAudio(a);
     }, []);
 
-    // Fullscreen for the whole player area (works in browser and inside the app).
     useEffect(() => {
         const onChange = () => setIsFull(Boolean(document.fullscreenElement));
         document.addEventListener("fullscreenchange", onChange);
@@ -88,7 +83,7 @@ export default function PlaybackQualityBar({ downloadBase, title }: Props) {
                             className={cn(
                                 "rounded-lg px-3 py-1 text-[11px] font-bold transition-all",
                                 quality === q
-                                    ? "bg-gradient-to-r from-red-600 to-orange-500 text-white shadow"
+                                    ? "bg-pink-600 text-white shadow-[0_0_15px_rgba(236,72,153,0.8),_0_0_5px_rgba(255,255,255,0.9)]"
                                     : "text-gray-400 hover:text-white"
                             )}
                         >
@@ -110,7 +105,7 @@ export default function PlaybackQualityBar({ downloadBase, title }: Props) {
                             className={cn(
                                 "rounded-lg px-3 py-1 text-[11px] font-bold transition-all whitespace-nowrap",
                                 audio === a
-                                    ? "bg-gradient-to-r from-amber-500 to-yellow-400 text-black shadow"
+                                    ? "bg-pink-600 text-white shadow-[0_0_15px_rgba(236,72,153,0.8),_0_0_5px_rgba(255,255,255,0.9)]"
                                     : "text-gray-400 hover:text-white"
                             )}
                         >
@@ -134,7 +129,7 @@ export default function PlaybackQualityBar({ downloadBase, title }: Props) {
                     type="button"
                     onClick={() => setGateOpen(true)}
                     title={title ? `Fast download — ${title} (${quality})` : undefined}
-                    className="ml-auto inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 px-4 py-2 text-xs font-black text-white transition hover:brightness-110"
+                    className="ml-auto inline-flex items-center gap-2 rounded-xl bg-pink-600 px-4 py-2 text-xs font-black text-white transition hover:brightness-110 shadow-[0_0_20px_rgba(236,72,153,0.7),_0_0_8px_rgba(255,255,255,0.9)]"
                 >
                     <Zap className="h-3.5 w-3.5" />
                     Fast download
@@ -171,7 +166,7 @@ export default function PlaybackQualityBar({ downloadBase, title }: Props) {
                                 }}
                                 aria-disabled={!human}
                                 className={cn(
-                                    "flex-1 rounded-xl bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 py-3 text-center text-xs font-black text-white transition",
+                                    "flex-1 rounded-xl bg-pink-600 py-3 text-center text-xs font-black text-white transition shadow-[0_0_20px_rgba(236,72,153,0.7),_0_0_8px_rgba(255,255,255,0.9)]",
                                     human ? "hover:brightness-110" : "pointer-events-none opacity-50"
                                 )}
                             >
@@ -181,7 +176,6 @@ export default function PlaybackQualityBar({ downloadBase, title }: Props) {
                     </div>
                 </div>
             )}
-
         </div>
     );
 }
