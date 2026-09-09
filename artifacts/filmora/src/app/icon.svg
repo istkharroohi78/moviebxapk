@@ -1,21 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" role="img" aria-label="FilmyWave icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
   <defs>
-    <linearGradient id="fw-fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0052CC"/>
-      <stop offset="100%" stop-color="#00C6FF"/>
+    <linearGradient id="main-orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB966"/>
+      <stop offset="40%" stop-color="#FF7A00"/>
+      <stop offset="100%" stop-color="#CC4400"/>
+    </linearGradient>
+    <linearGradient id="arrow-orange-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF9500"/>
+      <stop offset="100%" stop-color="#B33600"/>
     </linearGradient>
   </defs>
 
-  <rect x="2" y="2" width="40" height="40" rx="9" ry="9" fill="url(#fw-fav-bg)"/>
+  <!-- White Background -->
+  <rect width="500" height="500" fill="#FFFFFF"/>
 
-  <rect x="6"  y="8"  width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <rect x="6"  y="16" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <rect x="6"  y="24" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <rect x="6"  y="32" width="6" height="5" rx="1.5" fill="rgba(255,255,255,0.38)"/>
-  <line x1="15" y1="4" x2="15" y2="40" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <!-- 3D Shadow Layer -->
+  <path d="M 145 110 L 405 260 L 145 410 Q 90 410 90 350 L 90 170 Q 90 110 145 110 Z" fill="#A33200" />
 
-  <polygon points="19,12 19,32 36,22" fill="white" opacity="0.97"/>
+  <!-- Main Film Strip & Play Button -->
+  <path d="M 135 100 L 395 250 L 135 400 Q 80 400 80 340 L 80 160 Q 80 100 135 100 Z" fill="url(#main-orange-grad)" stroke="#FFF0E6" stroke-width="8" stroke-linejoin="round"/>
 
-  <path d="M4 39 Q9 35 15 39 Q21 43 27 39 Q33 35 40 39"
-        fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Glossy Effect -->
+  <path d="M 80 230 L 395 250" stroke="#FFFFFF" stroke-width="1.5" opacity="0.35" />
+
+  <!-- Film Strip Holes -->
+  <rect x="100" y="140" width="16" height="28" rx="6" fill="#1A0A00"/>
+  <rect x="100" y="195" width="16" height="28" rx="6" fill="#1A0A00"/>
+  <rect x="100" y="250" width="16" height="28" rx="6" fill="#1A0A00"/>
+  <rect x="100" y="305" width="16" height="28" rx="6" fill="#1A0A00"/>
+  <rect x="100" y="360" width="16" height="28" rx="6" fill="#1A0A00"/>
+
+  <!-- Center Downward Arrow -->
+  <path d="M 225 135 L 275 135 L 275 255 L 335 255 L 250 395 L 165 255 L 225 255 Z" fill="url(#arrow-orange-grad)" stroke="#FFF5EE" stroke-width="10" stroke-linejoin="round"/>
 </svg>
