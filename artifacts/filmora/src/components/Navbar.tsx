@@ -311,7 +311,7 @@ const Navbar = () => {
         />
         <nav
             className={cn(
-                "fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-fit transition-all duration-500 ease-in-out px-3 md:px-6 py-2 glass-pill",
+                "fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] md:w-max max-w-[98vw] transition-all duration-500 ease-in-out px-3 md:px-6 py-2 glass-pill",
                 isScrolled ? "bg-black/60 shadow-2xl" : "bg-black/20",
                 !isVisible && "-top-24"
             )}
@@ -375,7 +375,7 @@ const Navbar = () => {
                             exit={{ opacity: 0 }}
                             className="flex items-center justify-between w-full gap-4 md:gap-6 lg:gap-8 xl:gap-10"
                         >
-                            <div className="flex items-center gap-2 md:gap-3.5 lg:gap-6 xl:gap-8 min-w-0">
+                            <div className="flex items-center gap-2 md:gap-3.5 lg:gap-6 xl:gap-8 shrink-0 min-w-max">
                                 <Link href="/" className="group flex-shrink-0 flex items-center gap-2">
                                     <motion.div
                                         className="flex items-center gap-2"
